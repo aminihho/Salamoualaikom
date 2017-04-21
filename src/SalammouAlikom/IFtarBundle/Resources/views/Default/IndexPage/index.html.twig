@@ -1,0 +1,807 @@
+{% extends "base.html.twig" %}
+{% block  body %}
+    {% set colors = ['#0DCA24', '#3FC1FE', '#534B57','#1f1f20','#916319' ,'#8959A8', '#8959A8','#31708f','#880000'] %}
+    {% set size_colors = colors|length %}
+    {% set indice_color = 0 %}
+    {% set water = false  %}
+    {% set milk = false  %}
+    {% set datel = false  %}
+    {% set drinks = false  %}
+    {% set qte_water = 0  %}
+    {% set qte_milk = 0  %}
+    {% set qte_datel = 0  %}
+    {% set qte_drinks = 0  %}
+    {% set qte_food_person = 0  %}
+    {% set food_person = false  %}
+    {% set qte_soope_person = 0  %}
+    {% set soope_person = false  %}
+    {% set qte_salade_person = 0  %}
+    {% set salade_person = false  %}
+    {% set total_milk_qte_tag = 12 %}
+    {% set total_drinks_qte_tag = 12 %}
+    {% set total_datel_qte_tag = 4 %}
+    {% set total_water_qte_tag = 12 %}
+    {% set total_person_qte_tag = 100 %}
+
+
+
+
+
+
+    {{ block('silder') }}
+
+    {{ block('iftarTable') }}
+
+    {{ block('contact_info') }} 
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block  silder %}
+
+
+    <section id="main-slider" class="no-margin">
+        <div class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+                <li data-target="#main-slider" data-slide-to="1"></li>
+                <li data-target="#main-slider" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active" style="background-image:url({{ asset('images/slider/bg1.jpg') }})">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</h1>
+                                    <h2 class="animation animated-item-2">As-Salam Alaykoum, welcome to Masjd .<br> </h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                <div class="slider-img">
+                                    <img src="{{ asset('images/slider/img1.png') }}" class="img-responsive">
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="background-image:url({{ asset('images/slider/bg2.jpg') }})">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                <div class="slider-img">
+                                    <img src="{{ asset('images/slider/img2.png') }}" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" style="background-image:url({{ asset('images/slider/bg3.jpg') }})">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+                                    <h2 class="animation animated-item-2">Accusantium doloremque laudantium totam rem aperiam, eaque ipsa...</h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                <div class="slider-img">
+                                    <img src="{{ asset('images/slider/img3.png') }} " class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <a class="next hidden-xs" href="#main-slider" data-slide="next">
+            <i class="fa fa-chevron-right"></i>
+        </a>
+    </section>
+{% endblock %}
+
+{% block  contact_info %}
+
+    <section id="contact-info">
+        <div class="center">
+            <h2>How to Reach Us?</h2>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+        </div>
+        <div class="gmap-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 text-center">
+                        <div class="gmap">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29714.293934497593!2d39.81859377346733!3d21.417971516470946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c21b4ced818775%3A0x98ab2469cf70c9ce!2sMecca+Saudi+Arabia!5e0!3m2!1sen!2sus!4v1412214548949" width="600" height="450" frameborder="0" style="border:0"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 map-content">
+                        <ul class="row">
+                            <li class="col-sm-6">
+                                <address>
+                                    <h5>Tu-chemnitz.de</h5>
+                                    <p>
+                                        1537 Flint Street <br>
+                                        Tumon, MP 96911
+                                    </p>
+                                    <p>
+                                        Phone:670-898-2847 <br>
+                                        Email Address:info@domain.com
+                                    </p>
+                                </address>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block iftarTable %}
+
+    <section id="iftar_section_index_donate">
+        <div class="container" id="iftar_div_donate" >
+            <!--div class="table-responsive"-->
+
+                <table class="table  table-bordered" id ="iftar_table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Food</th>
+                        <th>Soup</th>
+                        <th>Salad</th>
+                        <th>Milk</th>
+                        <th>Watter</th>
+                        <th>Drinks</th>
+                        <th>Dattel</th>
+                    </tr>
+                    </thead>
+                    <tbody id="iftar_tbody">
+                    {% set data_persons = data|twig_json_decode  %}
+                    {% set i=0  %}
+                    {% for tags in data_persons.tags %}
+                        {% for key,value in tags %}
+                            {% set i = i+1  %}
+                            <tr>
+                                {% set persons = value.persons %}
+                                <td>{{ i }}.Ramadan</td>
+                                <td>
+                                 <!-- Salmou Alikom Every Body :) Food Field  -->
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        {% for key,value in persons %}
+                                            {% set persons = value %}
+                                            {% for key,value in persons %}
+                                                {% set person = value %}
+                                                {% if person.food == true %}
+
+                                                    {% set var = person.qte_person_day_food  %}
+                                                    {% set qte_food_person = qte_food_person + var %}
+                                                    {% set food_person = true %}
+
+                                                    <span   class="iftar" id = {{ person.id }} data-toggle="popover" title="      {{  person.pesudo  }}"  data-content="coock for {{ person.qte_person_day_food }} people." >
+                                                    <span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="row">
+                                            {% if food_person == true %}
+                                                <span class="iftar_text">{{ qte_food_person }}/{{ total_person_qte_tag }}</span>
+
+                                                <span  data-toggle="popover" title="  "  data-content=" we need .  {{ total_person_qte_tag - qte_food_person  }}.">
+                                                        <span class="glyphicon glyphicon-tint"></span>
+                                                    </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                </td>
+
+                                <td>  <!-- Salmou Alikom Every Body :) Soup Feld  -->
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            {% set persons = value.persons %}
+
+                                            {% for key,value in persons %}
+                                                {% set persons = value %}
+                                                {% for key,value in persons %}
+                                                    {% set person = value %}
+                                                    {% if person.soope == true %}
+
+                                                        {% set var = person.qte_person_day_soope  %}
+                                                        {% set qte_soope_person = qte_soope_person + var %}
+                                                        {% set soope_person = true %}
+
+                                                        <span  id = {{ person.id }} data-toggle="popover" title="{{  person.pesudo  }}"  data-content="coock for {{ person.qte_person_day_soope }} people.">
+                                                    <span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="col-xs-4">
+                                            <div class="row">
+                                                {% if soope_person == true %}
+                                                    <span class="iftar_text">{{ qte_soope_person }}/{{ total_person_qte_tag }}</span>
+
+                                                    <span  data-toggle="popover" title="  "  data-content=" we need .  {{ total_person_qte_tag - qte_soope_person  }}.">
+                                                        <span class="glyphicon glyphicon-tint"></span>
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </td>
+
+
+                                <td><!-- Salmou Alikom Every Body :) Salad Feld  -->
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            {% set persons = value.persons %}
+
+                                            {% for key,value in persons %}
+                                                {% set persons = value %}
+                                                {% for key,value in persons %}
+                                                    {% set person = value %}
+                                                    {% if person.salad == true %}
+
+                                                        {% set var = person.qte_person_day_salade  %}
+                                                        {% set qte_salade_person = qte_salade_person + var %}
+                                                        {% set salade_person = true %}
+
+                                                        <span  id = {{ person.id }} data-toggle="popover" title="      {{  person.pesudo  }}"  data-content="coock for {{ person.qte_person_day_salade }} people.">
+                                                    <span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="row">
+                                                {% if salade_person == true %}
+                                                    <span class="iftar_text">{{ qte_salade_person }}/{{ total_person_qte_tag }}</span>
+
+                                                    <span  data-toggle="popover" title="  "  data-content=" we need .  {{ total_person_qte_tag - qte_salade_person  }}.">
+                                                        <span class="glyphicon glyphicon-tint"></span>
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                                <td>
+                                    <!-- Salmou Alikom Every Body :) Milk  Feld  -->
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            {% set persons = value.persons %}
+                                            {% set indice_color = -1 %}
+                                            {% for key,value in persons %}
+                                                {% set persons = value %}
+                                                {% for key,value in persons %}
+                                                    {% set person = value %}
+                                                    {% if person.donate_milk == true %}
+                                                       {# chage  the color for every User: #}
+                                                        {% if indice_color == size_colors-1  %}
+                                                            {% set indice_color = 0 %}
+                                                        {% else %}
+                                                            {% set indice_color = indice_color+1 %}
+                                                        {% endif %}
+
+                                                        {% set var = person.qte_milk  %}
+                                                        {% set qte_milk = qte_milk + var %}
+                                                        {% set milk = true %}
+
+                                                        {% set color = colors[indice_color] %}
+
+                                                        <span id = {{ person.id }} data-toggle="popover" title=" {{  person.pesudo  }}"  data-content=" hat {{ var }}/{{ total_milk_qte_tag }} gegeben">
+                                                            <span class="glyphicon glyphicon-user" style="color:{{ color }}" ></span>
+                                                        </span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </div>
+
+                                        <div class="col-xs-4">
+                                            <div class="row">
+                                                {% if milk == true %}
+                                                    <span class="iftar_text">{{ qte_milk }}/{{ total_milk_qte_tag }}</span>
+
+                                                    <span  data-toggle="popover" title="  "  data-content=" we need  {{ total_milk_qte_tag - qte_milk  }}.">
+                                                        <span class="glyphicon glyphicon-tint"></span>
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <!-- Salmou Alikom Every Body :) Water  Feld  -->
+
+                                    <div class="row" >
+                                        <div class="col-xs-8">
+                                            {% set persons = value.persons %}
+                                            {% set indice_color = -1 %}
+                                            {% for key,value in persons %}
+                                                {% set persons = value %}
+
+                                                {% for key,value in persons %}
+                                                    {% set person = value %}
+                                                    {% if person.donte_water == true %}
+
+                                                        {% if indice_color == size_colors-1  %}
+                                                            {% set indice_color = 0 %}
+                                                         {% else %}
+                                                             {% set indice_color = indice_color+1 %}
+                                                        {% endif %}
+
+                                                        {% set var = person.qte_water  %}
+                                                        {% set qte_water = qte_water + var %}
+                                                        {% set water = true %}
+                                                        <span id = {{ person.id }}  data-toggle="popover" title=" {{  person.pesudo  }}"  data-content=" hat {{ var }}/{{ total_water_qte_tag }} gegeben" >
+                                                            {% set color = colors[indice_color] %}
+                                                            <span class="glyphicon glyphicon-user" style="color:{{ color }}"></span>
+                                                        </span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="row">
+                                                {% if water == true %}
+                                                    <span class="iftar_text">
+                                                        {{ qte_water }}/{{ total_water_qte_tag }}
+                                                    </span>
+                                                    <span   data-toggle="popover" title="  "  data-content=" we need  {{ total_water_qte_tag - qte_water  }}.">
+                                                        <span class="glyphicon glyphicon-tint"></span>
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </td>
+
+                                <td>
+                                    <!-- Salmou Alikom Every Body :) Drinks Feld  -->
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            {% set persons = value.persons %}
+                                            {% set indice_color = -1 %}
+                                            {% for key,value in persons %}
+                                                {% set persons = value %}
+                                                {% for key,value in persons %}
+                                                    {% set person = value %}
+                                                    {% if person.donate_another_drinks == true %}
+
+                                                        {# chage  the color for every User: #}
+                                                        {% if indice_color == size_colors-1  %}
+                                                            {% set indice_color = 0 %}
+                                                        {% else %}
+                                                            {% set indice_color = indice_color+1 %}
+                                                        {% endif %}
+
+                                                        {% set var = person.qte_another_drinks  %}
+                                                        {% set qte_drinks = qte_drinks + var %}
+                                                        {% set drinks = true %}
+
+                                                        <span id = {{ person.id }}  data-toggle="popover" title=" {{  person.pesudo  }}"  data-content=" hat {{ var }}/{{ total_drinks_qte_tag }} gegeben" >
+                                                            {% set color = colors[indice_color] %}
+                                                            <span class="glyphicon glyphicon-user" style="color:{{ color }}" ></span>
+                                                        </span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="row">
+                                                {% if drinks == true %}
+                                                    <span class="iftar_text">
+                                                        {{ qte_drinks }}/{{ total_drinks_qte_tag }}
+                                                    </span>
+                                                    <span data-toggle="popover" title="  "  data-content=" we need  {{ total_drinks_qte_tag - qte_drinks  }}.">
+                                                        <span class="glyphicon glyphicon-tint"></span>
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <!-- Salmou Alikom Every Body :) Dattel Feld  -->
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            {% set indice_color = -1 %}
+                                            {% set persons = value.persons %}
+                                            {% for key,value in persons %}
+                                                {% set persons = value %}
+                                                {% for key,value in persons %}
+                                                    {% set person = value %}
+                                                    {% if person.donate_dattel == true %}
+
+                                                        {# chage  the color for every User: #}
+                                                        {% if indice_color == size_colors-1  %}
+                                                            {% set indice_color = 0 %}
+                                                        {% else %}
+                                                            {% set indice_color = indice_color+1 %}
+                                                        {% endif %}
+
+                                                        {% set var = person.donate_dattel_qte  %}
+                                                        {% set qte_datel = qte_datel + var %}
+                                                        {% set datel = true %}
+                                                        <span id = {{ person.id }} data-toggle="popover" title=" {{  person.pesudo  }}"  data-content=" hat {{ var }}/{{ total_datel_qte_tag }} gegeben" >
+                                                            {% set color = colors[indice_color] %}
+                                                            <span class="glyphicon glyphicon-user" style="color:{{ color }}" ></span>
+                                                        </span>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="row">
+
+                                                {% if datel == true %}
+                                                    <span class="iftar_text">
+                                                        {{ qte_datel }}/{{ total_datel_qte_tag }}
+                                                    </span>
+
+                                                    <span>
+                                                        <span class="glyphicon glyphicon-tint"  data-toggle="popover" title="  "  data-content=" we need  {{ total_datel_qte_tag - qte_datel  }}."></span>
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+                        {% set food_person = false %}
+                        {% set soope_person = false %}
+                        {% set salade_person = false %}
+
+                        {% set water = false  %}
+                        {% set milk = false  %}
+                        {% set datel = false  %}
+                        {% set drinks = false  %}
+                        {% set qte_water = 0  %}
+                        {% set qte_milk = 0  %}
+                        {% set qte_datel = 0  %}
+                        {% set qte_drinks = 0  %}
+                        {% set qte_food_person = 0 %}
+                        {% set qte_soope_person = 0 %}
+                        {% set qte_salade_person = 0 %}
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            <!--/div-->
+        </div>
+
+        <button type="button" class="btn btn-info" id="iftar_button_show_formular" > Participate </button>
+
+        <div id="ifatr_div_form" class="collapse">
+            {{ block('iftarForm') }}
+        </div>
+
+    </section>
+
+
+
+
+{% endblock %}
+
+
+{% block iftarForm %}
+    {% block javascripts %}
+
+
+    {% endblock %}
+
+
+    <div class="container" id="iftar_form_donate" >
+        {{ form_start(iftar_form, {'attr': {'id':'id_form_donate'}}) }}
+        {{ form_errors(iftar_form) }}
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4" >
+                <div class="row">
+                    <div class="col-md-7">
+                        <label>Start Date of Donate:</label>
+                    </div>
+
+                    <div class="col-md-5">
+                        {{ form_errors(iftar_form.startDate) }}
+                        {{ form_widget(iftar_form.startDate,{ 'id': 'iftar_bundle_start_date' }) }}
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                {{ form_errors(iftar_form.endDate) }}
+                {{ form_widget(iftar_form.endDate,{ 'id': 'iftar_bundle_end_date' }) }}
+            </div>
+        </div>
+
+        <hr>
+    <div id="iftra_form_info">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2> Please make the + for the Food, that you can bringe it. </h2>
+            </div>
+        </div>
+        <div class="alert alert-danger" id="iftar_div_alert_danger" style="display: none"> </div>
+
+        <div class="row "> <!--  Section of Inputs for the Foods and the drinks -->
+            <!-- Input for  sope and slade and food  -->
+            <div class=" col-md-3 ">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label id="iftar_label_food">Food:</label>
+                    </div>
+                    <div class="col-xs-1">
+                        {{ form_errors(iftar_form.food) }}
+                        {{ form_widget(iftar_form.food,{ 'id': 'iftar_food' }) }}
+                    </div>
+                    <div class="col-xs-7"></div>
+                            <label id="iftar_label_food_Qte" style="display: none">Qte:</label>
+                            {{ form_errors(iftar_form.personFoodQte) }}
+                            {{ form_widget(iftar_form.personFoodQte,{ 'id': 'iftar_food_person_qte' }) }}
+                     </div>
+                <!-- Input for soope  -->
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label id="iftar_label_soope">Soope:</label>
+                    </div>
+                    <div class="col-xs-1">
+                        {{ form_errors(iftar_form.soope) }}
+                        {{ form_widget(iftar_form.soope,{ 'id': 'iftar_soope' }) }}
+                    </div>
+                    <div class="col-xs-7"></div>
+                    <label id="iftar_label_soope_Qte" style="display: none">Qte:</label>
+                    {{ form_errors(iftar_form.personSoopeQte) }}
+                    {{ form_widget(iftar_form.personSoopeQte,{ 'id': 'iftar_soope_person_qte' }) }}
+                </div>
+
+                <!-- Input for salade  -->
+                <div class="row">
+                    <div class="col-xs-4">
+                        <label id ="iftar_label_salade">Salade:</label>
+                    </div>
+                    <div class="col-xs-1">
+                        {{ form_errors(iftar_form.salad) }}
+                        {{ form_widget(iftar_form.salad,{ 'id': 'iftar_salade' }) }}
+                    </div>
+                    <div class="col-xs-7"></div>
+                    <label id="iftar_label_salade_Qte" style="display: none">Qte:</label>
+                    {{ form_errors(iftar_form.personSaladQte) }}
+                    {{ form_widget(iftar_form.personSaladQte,{ 'id': 'iftar_salade_person_qte' }) }}
+                </div>
+            </div>
+
+            <!-- End Input for sope and slade and food  -->
+
+            <!-- Input for  watter milk and other drinks  -->
+            <div class="col-md-6">
+                <!-- Input for Watter  -->
+                <div class="row ">
+                    <div class="col-xs-2 ">
+                        <label id="iftar_label_water">Water:</label>
+                    </div>
+                    <div class="col-xs-1 ">
+                        {{ form_errors(iftar_form.watter) }}
+                        {{ form_widget(iftar_form.watter,{ 'id': 'iftar_watter' }) }}
+                    </div>
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-1">
+                        <label id="iftar_label_watterQte" style="display: none">Qte:</label>
+                    </div>
+                    <div class="col-xs-3">
+                        {{ form_errors(iftar_form.watterQte) }}
+                        {{ form_widget(iftar_form.watterQte,{ 'id': 'iftar_watterQte' }) }}
+                    </div>
+                </div> <!-- End Input for Watter  -->
+
+                <!-- Input for Milk  -->
+                <div class="row ">
+                    <div class="col-xs-2 ">
+                        <label id = "iftar_label_milk">Milk:</label>
+                    </div>
+                    <div class="col-xs-1 " >
+                        {{ form_errors(iftar_form.milk) }}
+                        {{ form_widget(iftar_form.milk,{ 'id': 'iftar_milk' }) }}
+                    </div>
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-1">
+                        <label id="iftar_label_milkQte" style="display: none">Qte:</label>
+                    </div>
+                    <div class="col-xs-3">
+                        {{ form_errors(iftar_form.milkQte) }}
+                        {{ form_widget(iftar_form.milkQte,{ 'id': 'iftar_milkQte'}) }}
+                    </div>
+                </div> <!-- End Input for Milk  -->
+
+
+                <!-- Input for another another Drinks  -->
+                <div class="row ">
+                    <div class="col-xs-2 ">
+                        <label id="iftar_label_drinkQte">Drinks:</label>
+                    </div>
+                    <div class="col-xs-1 ">
+                        {{ form_errors(iftar_form.anotherDrink) }}
+                        {{ form_widget(iftar_form.anotherDrink,{ 'id': 'iftar_anotherDrink' }) }}
+                    </div>
+                    <div class="col-xs-3"></div>
+                    <div class="col-xs-1">
+                        <label id="iftar_label_anotherDrinkQte" style="display: none" >Qte:</label>
+                    </div>
+                    <div class="col-xs-3">
+                        {{ form_errors(iftar_form.anotherDrinkQte) }}
+                        {{ form_widget(iftar_form.anotherDrinkQte,{ 'id': 'iftar_anotherDrinkQte'}) }}
+                    </div>
+                </div> <!-- End Input for another Drinks  -->
+
+            </div> <!-- End Input for watter milk and other drinks  -->
+
+
+            <div class="col-md-3">
+                <div class="row"></div>
+                <!-- Input for  Dattel  -->
+                <div class="row ">
+                    <div class="col-xs-3 ">
+                        <label id="iftar_label_dattel">Dattel:</label>
+                    </div>
+                    <div class="col-xs-1 ">
+                        {{ form_errors(iftar_form.dattel) }}
+                        {{ form_widget(iftar_form.dattel,{ 'id': 'iftar_dattel' }) }}
+                    </div>
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-1">
+                        <label id="iftar_label_dattelQte" style="display: none">Qte:</label>
+                    </div>
+                    <div class="col-xs-3">
+                        {{ form_errors(iftar_form.dattelQte) }}
+                        {{ form_widget(iftar_form.dattelQte,{ 'id': 'iftar_dattelQte'}) }}
+                    </div>
+                </div> <!-- End Input Dattel  -->
+
+            </div>
+        </div> <!--  end Section of Inputs for the Foods and the drinks -->
+
+        <hr>
+        <div class="row"><h2> Please Enter your Information:</h2></div>
+        <div class="row"> <!--  Section Information about the person. -->
+            <div class="col-md-6"><!--  Section firstName lastName phonNumber. -->
+                <div class="row"><!--First Name -->
+                    <div class="  col-xs-5" >
+                        <label>First Name:</label>
+                    </div>
+                    <div class="  col-xs-4">
+                        {{ form_errors(iftar_form.firstName) }}
+                        {{ form_widget(iftar_form.firstName,{ 'id': 'iftar_firstName'}) }}
+                    </div>
+                    <div class=" col-xs-3" ></div>
+                </div><!--end First Name -->
+
+                <div class="row"><!--Last Name -->
+                    <div class="  col-xs-5" >
+                        <label>Last Name:</label>
+                    </div>
+                    <div class="  col-xs-4">
+                        {{ form_errors(iftar_form.lastName) }}
+                        {{ form_widget(iftar_form.lastName,{ 'id': 'iftar_lastName'}) }}
+                    </div>
+                    <div class=" col-xs-3" ></div>
+                </div><!--end Last Name -->
+
+                <div class="row"><!--TelfonNumber -->
+                    <div class="  col-xs-5" >
+                        <label>Phone:</label>
+                    </div>
+                    <div class="  col-xs-4">
+                        {{ form_errors(iftar_form.telefonnummer) }}
+                        {{ form_widget(iftar_form.telefonnummer,{ 'id': 'iftar_telefonnummer'}) }}
+                    </div>
+                    <div class=" col-xs-3" ></div>
+                </div><!--end TelfonNumber -->
+
+            </div><!--  End Section firstName lastName phonNumber. -->
+            <div class="col-md-6"><!-- section would u like to print u name -->
+                <div class="row">
+                    <h3> IF YOU LIKE TO DISPLAY YOURS NAME IN THE TABLE CLICK YES? </h3>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <label >YES.</label>
+                        {{ form_errors(iftar_form.psedoOn) }}
+                        {{ form_widget(iftar_form.psedoOn,{ 'id': 'iftar_psedoOn'}) }}
+                    </div>
+                    <div class="col-xs-2">
+                        <label style="display:none;">NO.</label>
+                        {{ form_errors(iftar_form.psedoOf) }}
+                        {{ form_widget(iftar_form.psedoOf,{ 'id': 'iftar_psedoOf'}) }}
+                    </div>
+                    <div class="col-xs-8">
+
+                    </div>
+                </div>
+            </div><!-- End section would u like to print u name -->
+        </div> <!--  Ende Section Information about the person. -->
+
+
+        <!--button   type="submit" id="iftar_button_submit_donatse" class="iftar_class_submit_donate"> submit </--button-->
+        </br>
+        </br>
+        <hr><hr>
+        <div class="row">
+            <div class="col-xs-4">
+
+            </div>
+            <div class="col-xs-4">
+                <a   href="#iftar_section_index_donate" type="button" id="iftar_button_submit_donate" class="btn btn-default iftar_class_submit_donate"> submit </a>
+            </div>
+            <div class="col-xs-4">
+            </div>
+        </div>
+        {{ form_end(iftar_form) }}
+    </div>
+
+        <div class="alert alert-info display-none" id="iftar_div_info"> Info! we dont need more Resource today </div>
+    </div>
+    <!--a  href="{{ path('i_ftar_get_avlaible_data') }}" type="button" id="iftar_button_submit_donate" class="iftar_class_submit_donate"> getTheData </a-->
+
+
+
+{% endblock %}
+
+
+
+

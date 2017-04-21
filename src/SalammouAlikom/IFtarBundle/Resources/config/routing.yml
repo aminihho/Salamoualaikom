@@ -1,0 +1,25 @@
+i_ftar_homepage:
+    path:     /app/index
+    defaults: { _controller: IFtarBundle:Default:index }
+
+
+i_ftar_add_new_donate:
+    path:     /app/donates/newdonate
+    defaults: { _controller: IFtarBundle:Default:addnewDonate }
+
+i_ftar_liste_donated_persons:
+    path:     /app/donatedpersones
+    defaults: { _controller: IFtarBundle:Default:listeAllDonatedPeopleForRamdhan }
+
+i_ftar_admin_pdf_managment:
+    path: app/admin/managmentPdfs
+    defaults: { _controller: IFtarBundle:AdminIFtarPage:createTableIFtar}
+
+
+i_ftar_get_avlaible_data:
+    path: app/data
+    defaults: { _controller: IFtarBundle:Default:listeMaxData}
+
+i_ftar_get_prayers:
+    path: app/prayers
+    defaults: { _controller: IFtarBundle:Prayer:index}

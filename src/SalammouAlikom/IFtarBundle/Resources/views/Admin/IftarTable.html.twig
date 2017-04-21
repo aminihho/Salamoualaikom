@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{# #}   <link href="{{ asset('/home/kourda/Dropbox/Server_Moschee/SalamouAlikom/web/css/bootstrap/bootsrap3_3_7.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/home/kourda/Dropbox/Server_Moschee/SalamouAlikom/web/css/app/IFtar.css') }} " rel="stylesheet">
+    <script src="{{ asset('/home/kourda/Dropbox/Server_Moschee/SalamouAlikom/web/js/jquery/jquery_3_2_0.js')  }}"></script>
+
+    <script src="{{ asset('/home/kourda/Dropbox/Server_Moschee/SalamouAlikom/web/js/bootstrap/bootstrap_3_3_7.min.js') }}"></script>
+{#
+    <link href="{{ asset('css/bootstrap/bootsrap3_3_7.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app/IFtar.css') }} " rel="stylesheet">
+    <script src="{{ asset('js/jquery/jquery_3_2_0.js')  }}"></script>
+
+    <script src="{{ asset('js/bootstrap/bootstrap_3_3_7.min.js') }}"></script>
+#}
+</head>
+<body>
+
+    <h2>Condensed Table</h2>
+    <p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p>
+    <table border="2" >
+        <thead>
+        <tr>
+            <th></th>
+            <th>Food</th>
+            <th>Soupe</th>
+            <th>Salade</th>
+            <th>Milk</th>
+            <th>Water</th>
+            <th>Drink</th>
+
+            <th>Dattel</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% block body %}
+            // Set Variables
+            {% set finished_cell = [] %}
+            {% set not_finished_cell = [] %}
+            {% set persons_name_soupe = '' %}
+            {% set persons_name_food = '' %}
+            {% set persons_name_salade = '' %}
+            {% set persons_name_milk = '' %}
+            {% set persons_name_water = '' %}
+            {% set persons_name_drink = '' %}
+            {% set persons_name_dattel = '' %}
+
+
+            {% set qte_food_person = 0  %}
+            // set the Total Qte of Food and Drinks By Day.
+            {% set total_person_tag = 100  %}
+            {% set total_milk_tag = 12  %}
+            {% set total_drink_tag = 12  %}
+            {% set total_water_tag = 12  %}
+            {% set total_dattel_tag = 4  %}
+
+
+
+            //
+            {% set qte_soope_person = 0  %}
+            {% set qte_salade_person = 0  %}
+            {% set qte_milk_person = 0  %}
+            {% set qte_water_person = 0  %}
+            {% set qte_drink_person = 0  %}
+            {% set qte_dattel_person = 0  %}
+
+            {% set data_persons = data|twig_json_decode  %}
+            {% set i=0  %}
+            {% for tags in data_persons.tags %}
+            {% for key,value in tags %}
+            {% set id_soupe = 'id_td_soope_' ~ i %}
+            {% set id_food = 'id_td_food_' ~ i %}
+            {% set id_salade = 'id_td_salade_' ~ i %}
+            {% set id_milk = 'id_td_milk_' ~ i %}
+            {% set id_water = 'id_td_water_' ~ i %}
+            {% set id_drink = 'id_td_drink_' ~ i %}
+            {% set id_dattel = 'id_td_dattel_' ~ i %}
+            {% set persons = value.persons %}
+            {% set i = i+1  %}
+            <tr>
+                <td>{{ i }}.Ramdathan</td>
+
+                <td id="{{ id_food }}">
+                    <!-- Salmou Alikom Every Body :) Food Field  -->
+
+                    {% for key,value in persons %}
+                        {% set persons = value %}
+                        {% for key,value in persons %}
+                            {% set person = value %}
+                            {% if person.food == true %}
+                                {% set var = person.qte_person_day_food  %}
+                                {% set qte_food_person = qte_food_person + var %}
+                                {% set persons_name_food  = persons_name_food ~  person.pesudo ~ ', '   %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    {% if qte_food_person < total_person_tag %}
+                        <span class="not-finshed-donate-cell">{{ qte_food_person }}/{{ total_person_tag }}</span> <span class="glyphicon glyphicon-user" style="color:#1f1f20" ></span>
+                        {% set not_finished_cell = not_finished_cell|merge({(id_food): id_food}  ) %}
+
+                    {% endif %}
+                    {% if qte_food_person >= total_person_tag %}
+                        {% set var =  id_food  %}
+                        {% set finished_cell = finished_cell|merge({(var): var}  ) %}
+
+                        <span class="iftar_person_text_pdf"> {{ persons_name_food }} </span>
+
+                    {% endif %}
+
+
+                </td>
+
+                <td id="{{id_soupe}}"><!--soupe -->
+
+                    {% set persons = value.persons %}
+
+                    {% for key,value in persons %}
+                        {% set persons = value %}
+                        {% for key,value in persons %}
+                            {% set person = value %}
+                            {% if person.soope == true %}
+
+                                {% set var = person.qte_person_day_soope  %}
+                                {% set qte_soope_person = qte_soope_person + var %}
+                                {% set persons_name_soupe  = persons_name_soupe ~  person.pesudo ~ ', '   %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    {% if qte_soope_person < total_person_tag %}
+                        <span>{{ qte_soope_person }}/{{ total_person_tag }} <span class="glyphicon glyphicon-user" style="color:#1f1f20" ></span> </span>
+                        {% set not_finished_cell = not_finished_cell|merge({(id_soupe): id_soupe}  ) %}
+
+                    {% endif %}
+                    {% if qte_soope_person >= total_person_tag %}
+                        {% set var =  id_soupe  %}
+                        {% set finished_cell = finished_cell|merge({(var): var}  ) %}
+
+                        <span class="iftar_person_text_pdf"> {{ persons_name_soupe }} </span>
+
+                    {% endif %}
+
+                </td>
+                <!-- Salade -->
+                <td id="{{id_salade}}">
+
+                    {% set persons = value.persons %}
+
+                    {% for key,value in persons %}
+                        {% set persons = value %}
+                        {% for key,value in persons %}
+                            {% set person = value %}
+                            {% if person.salad == true %}
+
+                                {% set var = person.qte_person_day_salade  %}
+                                {% set qte_salade_person = qte_salade_person + var %}
+                                {% set persons_name_salade  = persons_name_salade ~  person.pesudo ~ ', '   %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    {% if qte_salade_person < total_person_tag %}
+                        <span>{{ qte_salade_person }}/{{ total_person_tag }} <span class="glyphicon glyphicon-user" style="color:#1f1f20" ></span> </span>
+                        {% set not_finished_cell = not_finished_cell|merge({(id_salade): id_salade}  ) %}
+
+                    {% endif %}
+                    {% if qte_salade_person >= total_person_tag %}
+                        {% set var =  id_salade  %}
+                        {% set finished_cell = finished_cell|merge({(var): var}  ) %}
+
+                        <span class="iftar_person_text_pdf"> {{ persons_name_salade }} </span>
+
+                    {% endif %}
+
+                </td>
+
+                <!-- Milk -->
+                <td id="{{id_milk}}">
+
+                    {% set persons = value.persons %}
+
+                    {% for key,value in persons %}
+                        {% set persons = value %}
+                        {% for key,value in persons %}
+                            {% set person = value %}
+                            {% if person.donate_milk == true %}
+
+                                {% set var = person.qte_milk  %}
+                                {% set qte_milk_person = qte_milk_person + var %}
+                                {% set persons_name_milk  = persons_name_milk ~  person.pesudo ~ ', '   %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    {% if qte_milk_person < total_milk_tag %}
+                        <span>{{ qte_milk_person }}/{{ total_milk_tag }} <span class="glyphicon glyphicon-user" style="color:#1f1f20" ></span> </span>
+                        {% set not_finished_cell = not_finished_cell|merge({(id_milk): id_milk}  ) %}
+
+                    {% endif %}
+                    {% if qte_milk_person >= total_milk_tag %}
+                        {% set var =  id_milk  %}
+                        {% set finished_cell = finished_cell|merge({(var): var}  ) %}
+
+                        <span class="iftar_person_text_pdf"> {{ persons_name_milk }} </span>
+
+                    {% endif %}
+
+                </td>
+
+                <!-- Water -->
+                <td id="{{id_water}}">
+
+                    {% set persons = value.persons %}
+
+                    {% for key,value in persons %}
+                        {% set persons = value %}
+                        {% for key,value in persons %}
+                            {% set person = value %}
+                            {% if person.donte_water == true %}
+
+                                {% set var = person.qte_water  %}
+                                {% set qte_water_person = qte_water_person + var %}
+                                {% set persons_name_water  = persons_name_water ~  person.pesudo ~ ', '   %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    {% if qte_water_person < total_water_tag %}
+                        <span>{{ qte_water_person }}/{{ total_water_tag }} <span class="glyphicon glyphicon-user" style="color:#1f1f20" ></span> </span>
+                        {% set not_finished_cell = not_finished_cell|merge({(id_water): id_water}  ) %}
+
+                    {% endif %}
+                    {% if qte_water_person >= total_water_tag %}
+                        {% set var =  id_water  %}
+                        {% set finished_cell = finished_cell|merge({(var): var}  ) %}
+
+                        <span class="iftar_person_text_pdf"> {{ persons_name_water }} </span>
+
+                    {% endif %}
+
+                </td>
+
+                <!-- Drink -->
+                <td id="{{id_drink}}">
+
+                    {% set persons = value.persons %}
+
+                    {% for key,value in persons %}
+                        {% set persons = value %}
+                        {% for key,value in persons %}
+                            {% set person = value %}
+                            {% if person.donate_another_drinks == true %}
+
+                                {% set var = person.qte_another_drinks  %}
+                                {% set qte_drink_person = qte_drink_person + var %}
+                                {% set persons_name_drink  = persons_name_drink ~  person.pesudo ~ ', '   %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    {% if qte_drink_person < total_drink_tag %}
+                        <span>{{ qte_drink_person }}/{{ total_drink_tag }} <span class="glyphicon glyphicon-user" style="color:#1f1f20" ></span> </span>
+                        {% set not_finished_cell = not_finished_cell|merge({(id_drink): id_drink}  ) %}
+
+                    {% endif %}
+                    {% if qte_drink_person >= total_drink_tag %}
+                        {% set var =  id_drink  %}
+                        {% set finished_cell = finished_cell|merge({(var): var}  ) %}
+
+                        <span class="iftar_person_text_pdf"> {{ persons_name_drink }} </span>
+
+                    {% endif %}
+
+                </td>
+
+
+
+
+                <!-- Dattel -->
+                <td id="{{id_dattel}}">
+
+                    {% set persons = value.persons %}
+
+                    {% for key,value in persons %}
+                        {% set persons = value %}
+                        {% for key,value in persons %}
+                            {% set person = value %}
+                            {% if person.donate_dattel == true %}
+
+                                {% set var = person.donate_dattel_qte  %}
+                                {% set qte_dattel_person = qte_dattel_person + var %}
+                                {% set persons_name_dattel  = persons_name_dattel ~  person.pesudo ~ ', '   %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+
+                    {% if qte_dattel_person < total_dattel_tag %}
+                        <span class="iftar_text">{{ qte_dattel_person }}/{{ total_dattel_tag }} <span class="glyphicon glyphicon-user" style="color:#1f1f20" ></span> </span>
+                        {% set not_finished_cell = not_finished_cell|merge({( id_dattel ): id_dattel}  ) %}
+
+                    {% endif %}
+                    {% if qte_dattel_person >= total_dattel_tag %}
+                        {% set var =  id_dattel  %}
+                        {% set finished_cell = finished_cell|merge({(var): var}  ) %}
+
+                        <span class="iftar_person_text_pdf"> {{ persons_name_dattel }} </span>
+
+                    {% endif %}
+
+                </td>
+
+
+
+            </tr>
+            {% endfor %}
+            {% set persons_name_food = '' %}
+            {% set persons_name_soupe = '' %}
+            {% set persons_name_salade = '' %}
+            {% set persons_name_milk = '' %}
+            {% set persons_name_water = '' %}
+            {% set persons_name_drink = '' %}
+            {% set persons_name_dattel = '' %}
+            {% set water = false  %}
+            {% set milk = false  %}
+            {% set datel = false  %}
+            {% set drinks = false  %}
+            {% set qte_water = 0  %}
+            {% set qte_milk = 0  %}
+            {% set qte_datel = 0  %}
+            {% set qte_drinks = 0  %}
+            {% set qte_food_person = 0 %}
+            {% set qte_soope_person = 0 %}
+            {% set qte_salade_person = 0 %}
+            {% set qte_milk_person = 0 %}
+            {% set qte_water_person = 0 %}
+            {% set qte_drink_person = 0 %}
+            {% set qte_dattel_person = 0 %}
+
+
+            {% endfor %}
+
+            <script type="text/javascript">
+
+
+                $( document ).ready(function() {
+
+                    var array =new Array();
+                    var array2 = new Array();
+                    {% for key, value in not_finished_cell %}
+                    array2.push({{ key}});
+                    {% endfor %}
+                    while (array2.length > 0 ){
+                        var cell = array2.pop().id;
+                        $('#'+cell).addClass('not-finshed-donate-cell');
+                    }
+
+                    {% for key, value in finished_cell %}
+                    array.push({{ key}});
+                    {% endfor %}
+                    while (array.length > 0 ){
+                        var cell = array.pop().id;
+                        $('#'+cell).addClass('finshed-donate-cell');
+                    }
+
+
+                });
+
+            </script>
+
+        {% endblock %}
+
+        </tbody>
+    </table>
+
+</body>
+</html>
+

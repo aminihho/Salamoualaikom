@@ -1,0 +1,9 @@
+i_ftar:
+    resource: "@IFtarBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
