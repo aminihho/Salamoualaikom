@@ -222,7 +222,8 @@ $( document ).ready(function() {
 
         $.ajax({
 
-            url:'http://127.0.0.1:8000/app/donates/newdonate',
+           // url:'http://127.0.0.1:8000/app/donates/newdonate',
+            url : Routing.generate('i_ftar_add_new_donate'),
             type:'post',
             dataType:'json',
             data:formData,
@@ -275,7 +276,8 @@ $( document ).ready(function() {
 
 
     function callAjaxToGetAllDonatedPersonsInRamadathn(){
-        $.get('http://127.0.0.1:8000/app/donatedpersones', function (data, status){
+        var url = Routing.generate('i_ftar_liste_donated_persons');
+        $.get(url, function (data, status){
             var i = 1;
             $('#iftar_tbody').remove();
             $('#iftar_table').append('<tbody id = "iftar_tbody">');
@@ -468,7 +470,8 @@ $( document ).ready(function() {
         intitForm();
 
         var date = $("#iftar_bundle_start_date").val();
-        var url = 'http://127.0.0.1:8000/app/data';
+        //var url = 'http://127.0.0.1:8000/app/data';
+        var url = Routing.generate('i_ftar_get_avlaible_data');
         // Send Request zum Server, um die Daten zu haben.
         $.post(url, {date: date},
              function ( data, status ){

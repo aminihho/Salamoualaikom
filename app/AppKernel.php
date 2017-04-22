@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new SalammouAlikom\IFtarBundle\IFtarBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
         ];
 
