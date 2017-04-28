@@ -1,0 +1,500 @@
+{% extends 'IFtarBundle:Admin:BaseTemplates/BaseAdmin.html.twig' %}
+
+{% block body %}
+
+    {% set colors = ['#0DCA24', '#3FC1FE', '#534B57','#1f1f20','#916319' ,'#8959A8', '#8959A8','#31708f','#880000'] %}
+    {% set size_colors = colors|length %}
+    {% set indice_color = 0 %}
+    {% set water = false  %}
+    {% set milk = false  %}
+    {% set datel = false  %}
+    {% set drinks = false  %}
+    {% set qte_water = 0  %}
+    {% set qte_milk = 0  %}
+    {% set qte_datel = 0  %}
+    {% set qte_drinks = 0  %}
+    {% set qte_food_person = 0  %}
+    {% set food_person = false  %}
+    {% set qte_soope_person = 0  %}
+    {% set soope_person = false  %}
+    {% set qte_salade_person = 0  %}
+    {% set salade_person = false  %}
+    {% set total_milk_qte_tag = 12 %}
+    {% set total_drinks_qte_tag = 12 %}
+    {% set total_datel_qte_tag = 4 %}
+    {% set total_water_qte_tag = 12 %}
+    {% set total_person_qte_tag = 100 %}
+
+    {{ block('iftarTable') }}
+
+
+{% endblock %}
+
+
+{% block iftarTable %}
+
+
+    <section id="iftar_section_index_donate">
+      <div  id="iftar_div_donate" >
+         <!--div class="table-responsive"-->
+
+         <table data-role="table" id ="iftar_table" data-mode="reflow" class="ui-responsive table-stroke" >
+            <thead>
+            <tr>
+               <th>Date</th>
+               <th>Food</th>
+               <th>Soup</th>
+               <th>Salad</th>
+               <th>Milk</th>
+               <th>Water</th>
+               <th>Drinks</th>
+               <th>Dattel</th>
+            </tr>
+            </thead>
+            <tbody id="iftar_tbody">
+            {% set data_persons = data|twig_json_decode  %}
+            {% set i=0  %}
+            {% for tags in data_persons.tags %}
+                {% for key,value in tags %}
+                    {% set i = i+1  %}
+                   <tr>
+                       {% set persons = value.persons %}
+                      <td>{{ i }}.Ramadan</td>
+                       <td>
+                          <!-- Salmou Alikom Every Body :) Food Field  -->
+                          {% for key,value in persons %}
+                              {% set persons = value %}
+                              {% for key,value in persons %}
+                                  {% set person = value %}
+
+                                  {% if (person.food == true) and ( person.qte_person_day_food  > 0 )  %}
+                                      {% set var = person.qte_person_day_food  %}
+                                      {% set qte_food_person = qte_food_person + var %}
+                                      {% set food_person = true %}
+
+                                      {% set id_popupDialog = 'popupDialog_food_'~person.id   %}
+                                      {% set id_input = 'input_food_'~person.id   %}
+
+                                      <a href="#{{ id_popupDialog  }}" data-rel="popup" data-position-to="window" data-transition="pop"  data-mini="true" class=" ui-btn ui-corner-all ui-btn-inline ui-icon-user  ui-btn-icon-notext" ></a>
+                                      <div data-role="popup" id="{{ id_popupDialog  }}" data-overlay-theme="b" data-theme="b"  style="max-width:400px;">
+                                          <div data-role="header" data-theme="a">
+                                              <h1>{{  person.pesudo  }}</h1>
+                                          </div>
+                                          <div role="main" class="ui-content">
+                                              <h3 class="ui-title">Are you sure you want to update this Information? </h3>
+                                              <span>Quantity of Food:</span>
+                                              <input id="{{ id_input }}" type="Number" value="{{ var }}" min="0" max="{{ total_person_qte_tag }}"/>
+
+
+                                              <a href="#" onclick="updateDataAction('food', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_update "  >update</a>
+                                              <a href="#" onclick="deleteDataAction('food', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_delete" data-rel="external">Delete</a>
+
+                                              <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_back" data-rel="back">cancel</a>
+
+                                          </div>
+                                      </div>
+
+                                      {% block javascript %}
+                                      <script type="text/javascript">
+                                          $(document).on('popupaterclose', '#{{ id_popupDialog }}', function(){
+                                              $('.iftar_admin_link_update a').unbind('click');
+                                              $('.iftar_admin_link_delete a').unbind('click');
+
+                                          });
+                                      </script>
+
+                                      {% endblock %}
+
+                                  {% endif %}
+                              {% endfor %}
+                          {% endfor %}
+                          {% if food_person == true %}
+                              <span class="iftar_text">{{ qte_food_person }}/{{ total_person_qte_tag }}</span>
+                          {% endif %}
+
+                       </td>
+
+                       <td>  <!-- Salmou Alikom Every Body :) Soup Feld  -->
+                            {% set persons = value.persons %}
+
+                            {% for key,value in persons %}
+                                {% set persons = value %}
+                                {% for key,value in persons %}
+                                    {% set person = value %}
+                                    {% if (person.soope == true) and ( person.qte_person_day_soope > 0) %}
+
+                                        {% set var = person.qte_person_day_soope  %}
+                                        {% set qte_soope_person = qte_soope_person + var %}
+                                        {% set soope_person = true %}
+
+                                        {% set id_popupDialog = 'popupDialog_soope_'~person.id   %}
+                                        {% set id_input = 'input_soope_'~person.id   %}
+
+
+                                        <a href="#{{ id_popupDialog  }}" data-rel="popup" data-position-to="window" data-transition="pop"  data-mini="true" class=" ui-btn ui-corner-all ui-btn-inline ui-icon-user  ui-btn-icon-notext"></a>
+                                        <div data-role="popup" id="{{ id_popupDialog  }}" data-overlay-theme="b" data-theme="b"  style="max-width:400px;">
+                                            <div data-role="header" data-theme="a">
+                                                <h1>{{  person.pesudo  }}</h1>
+                                            </div>
+                                            <div role="main" class="ui-content">
+                                                <h3 class="ui-title">Are you sure you want to update this Information? </h3>
+                                                <span>Quantity of Soupe:</span>
+                                                <input id="{{ id_input }}" type="Number" value="{{ var }}" min="0" max="{{ total_person_qte_tag }}"/>
+
+                                                <a href="#" onclick="updateDataAction('soope', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_update "  >update</a>
+                                                <a href="#" onclick="deleteDataAction('soope', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_delete" data-rel="external">Delete</a>
+
+                                                <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">cancel</a>
+
+                                            </div>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                            $(document).on('popupaterclose', '#{{ id_popupDialog }}', function(){
+                                                $('.iftar_admin_link_update a').unbind('click');
+                                                $('.iftar_admin_link_delete a').unbind('click');
+
+                                            });
+                                        </script>
+
+
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                          {% if soope_person == true %}
+                              <span class="iftar_text">{{ qte_soope_person }}/{{ total_person_qte_tag }}</span>
+                          {% endif %}
+
+                       </td>
+
+
+                       <td><!-- Salmou Alikom Every Body :) Salad Feld  -->
+
+                                {% set persons = value.persons %}
+
+                                {% for key,value in persons %}
+                                    {% set persons = value %}
+                                    {% for key,value in persons %}
+                                        {% set person = value %}
+                                        {% if ( person.salad == true ) and ( person.qte_person_day_salade > 0)%}
+
+                                            {% set var = person.qte_person_day_salade  %}
+                                            {% set qte_salade_person = qte_salade_person + var %}
+                                            {% set salade_person = true %}
+
+                                            {% set id_popupDialog = 'popupDialog_salade_'~person.id   %}
+                                            {% set id_input = 'input_salade_'~person.id   %}
+
+
+                                            <a href="#{{ id_popupDialog  }}" data-rel="popup" data-position-to="window" data-transition="pop"  data-mini="true" class=" ui-btn ui-corner-all ui-btn-inline ui-icon-user  ui-btn-icon-notext"></a>
+                                            <div data-role="popup" id="{{ id_popupDialog  }}" data-overlay-theme="b" data-theme="b"  style="max-width:400px;">
+                                                <div data-role="header" data-theme="a">
+                                                    <h1>{{  person.pesudo  }}</h1>
+                                                </div>
+                                                <div role="main" class="ui-content">
+                                                    <h3 class="ui-title">Are you sure you want to update this Information? </h3>
+                                                    <span>Quantity of Salad:</span>
+                                                    <input id="{{ id_input }}" type="Number" value="{{ var }}" min="0" max="{{ total_person_qte_tag }}"></input>
+
+                                                    <a href="#" onclick="updateDataAction('salade', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_update "  >update</a>
+                                                    <a href="#" onclick="deleteDataAction('salade', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_delete" data-rel="external">Delete</a>
+
+                                                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">cancel</a>
+
+                                                </div>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                $(document).on('popupaterclose', '#{{ id_popupDialog }}', function(){
+                                                    $('.iftar_admin_link_update a').unbind('click');
+                                                    $('.iftar_admin_link_delete a').unbind('click');
+
+                                                });
+                                            </script>
+
+
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                          {% if salade_person == true %}
+                              <span class="iftar_text">{{ qte_salade_person }}/{{ total_person_qte_tag }}</span>
+                          {% endif %}
+                       </td>
+
+
+
+
+                       <td>
+                         <!-- Salmou Alikom Every Body :) Milk  Feld  -->
+
+
+                          {% set persons = value.persons %}
+
+                          {% for key,value in persons %}
+                              {% set persons = value %}
+                              {% for key,value in persons %}
+                                  {% set person = value %}
+                                  {% if ( (person.donate_milk == true) and ( person.qte_milk > 0) )%}
+
+                                      {% set var = person.qte_milk %}
+                                      {% set qte_milk = qte_milk + var %}
+                                      {% set milk = true %}
+
+                                      {% set id_popupDialog = 'popupDialog_milk_'~person.id   %}
+                                      {% set id_input = 'input_milk_'~person.id   %}
+
+
+                                      <a href="#{{ id_popupDialog  }}" data-rel="popup" data-position-to="window" data-transition="pop"  data-mini="true" class=" ui-btn ui-corner-all ui-btn-inline ui-icon-user  ui-btn-icon-notext"></a>
+                                      <div data-role="popup" id="{{ id_popupDialog  }}" data-overlay-theme="b" data-theme="b"  style="max-width:400px;">
+                                          <div data-role="header" data-theme="a">
+                                              <h1>{{  person.pesudo  }}</h1>
+                                          </div>
+                                          <div role="main" class="ui-content">
+                                              <h3 class="ui-title">Are you sure you want to update this Information? </h3>
+                                              <span>Quantity of Milk:</span>
+                                              <input id="{{ id_input }}" type="Number" value="{{ var }}" min="0" max="{{ total_milk_qte_tag }}"></input>
+
+                                              <a href="#" onclick="updateDataAction('milk', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_update "  >update</a>
+                                              <a href="#" onclick="deleteDataAction('milk', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_delete" data-rel="external">Delete</a>
+
+                                              <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">cancel</a>
+
+                                          </div>
+                                      </div>
+
+                                      <script type="text/javascript">
+                                          $(document).on('popupaterclose', '#{{ id_popupDialog }}', function(){
+                                              $('.iftar_admin_link_update a').unbind('click');
+                                              $('.iftar_admin_link_delete a').unbind('click');
+
+                                          });
+                                      </script>
+
+
+                                  {% endif %}
+                              {% endfor %}
+                          {% endfor %}
+                          {% if milk == true %}
+                              <span class="iftar_text">{{ qte_milk }}/{{ total_milk_qte_tag }}</span>
+                          {% endif %}
+
+
+                      </td>
+
+                       <td>
+                           <!-- Salmou Alikom Every Body :) Water  Feld  -->
+
+
+                           {% set persons = value.persons %}
+                                {% set indice_color = -1 %}
+                                {% for key,value in persons %}
+                                    {% set persons = value %}
+
+                                    {% for key,value in persons %}
+                                        {% set person = value %}
+                                        {% if ( person.donte_water == true ) and ( person.qte_water > 0) %}
+
+                                            {% if indice_color == size_colors-1  %}
+                                                {% set indice_color = 0 %}
+                                            {% else %}
+                                                {% set indice_color = indice_color+1 %}
+                                            {% endif %}
+
+                                            {% set var = person.qte_water  %}
+                                            {% set qte_water = qte_water + var %}
+                                            {% set water = true %}
+                                            {% set id_popupDialog = 'popupDialog_water_'~person.id   %}
+                                            {% set id_input = 'input_water_'~person.id   %}
+
+
+                                            <a href="#{{ id_popupDialog  }}" data-rel="popup" data-position-to="window" data-transition="pop"  data-mini="true" class=" ui-btn ui-corner-all ui-btn-inline ui-icon-user  ui-btn-icon-notext"></a>
+                                            <div data-role="popup" id="{{ id_popupDialog  }}" data-overlay-theme="b" data-theme="b"  style="max-width:400px;">
+                                                <div data-role="header" data-theme="a">
+                                                    <h1>{{  person.pesudo  }}</h1>
+                                                </div>
+                                                <div role="main" class="ui-content">
+                                                    <h3 class="ui-title">Are you sure you want to update this Information? </h3>
+                                                    <span>Quantity of Water:</span>
+                                                    <input id="{{ id_input }}" type="Number" value="{{ var }}" min="0" max="{{ total_water_qte_tag }}"></input>
+                                                    <a href="#" onclick="updateDataAction('water', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_update "  >update</a>
+                                                    <a href="#" onclick="deleteDataAction('water', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_delete" data-rel="external">Delete</a>
+
+                                                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">cancel</a>
+
+                                                </div>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                $(document).on('popupaterclose', '#{{ id_popupDialog }}', function(){
+                                                    $('.iftar_admin_link_update a').unbind('click');
+                                                    $('.iftar_admin_link_delete a').unbind('click');
+
+                                                });
+                                            </script>
+
+
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                          {% if water == true %}
+                              <span class="iftar_text">{{ qte_water }}/{{ total_water_qte_tag }}</span>
+                          {% endif %}
+
+
+                       </td>
+
+
+                       <td>
+                         <!-- Salmou Alikom Every Body :) Drinks Feld  -->
+
+                                {% set persons = value.persons %}{##}
+                                {% set indice_color = -1 %}
+                                {% for key,value in persons %}
+                                    {% set persons = value %}
+                                    {% for key,value in persons %}
+                                        {% set person = value %}
+                                        {% if ( person.donate_another_drinks == true ) and ( person.qte_another_drinks > 0 ) %}
+
+                                            {% if indice_color == size_colors-1  %}
+                                                {% set indice_color = 0 %}
+                                            {% else %}
+                                                {% set indice_color = indice_color+1 %}
+                                            {% endif %}
+
+                                            {% set var = person.qte_another_drinks  %}
+                                            {% set qte_drinks = qte_drinks + var %}
+                                            {% set drinks = true %}
+                                            {% set id_popupDialog = 'popupDialog_drink_'~person.id   %}
+                                            {% set id_input = 'input_drink_'~person.id   %}
+
+                                            <a href="#{{ id_popupDialog  }}" data-rel="popup" data-position-to="window" data-transition="pop"  data-mini="true" class=" ui-btn ui-corner-all ui-btn-inline ui-icon-user  ui-btn-icon-notext"></a>
+                                            <div data-role="popup" id="{{ id_popupDialog  }}" data-overlay-theme="b" data-theme="b"  style="max-width:400px;">
+                                                <div data-role="header" data-theme="a">
+                                                    <h1>{{  person.pesudo  }}</h1>
+                                                </div>
+                                                <div role="main" class="ui-content">
+                                                    <h3 class="ui-title">Are you sure you want to update this Information? </h3>
+                                                    <span>Quantity of  Drinks:</span>
+                                                    <input id="{{ id_input }}" type="Number" value="{{ var }}" min="0" max="{{ total_drinks_qte_tag }}"></input>
+                                                    <a href="#" onclick="updateDataAction('drink', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_update "  >update</a>
+                                                    <a href="#" onclick="deleteDataAction('drink', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_delete" data-rel="external">Delete</a>
+
+                                                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">cancel</a>
+
+                                                </div>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                $(document).on('popupaterclose', '#{{ id_popupDialog }}', function(){
+                                                    $('.iftar_admin_link_update a').unbind('click');
+                                                    $('.iftar_admin_link_delete a').unbind('click');
+
+                                                });
+                                            </script>
+
+
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                          {% if drinks == true %}
+                              <span class="iftar_text">{{ qte_drinks }}/{{ total_drinks_qte_tag }}</span>
+                          {% endif %}{##}
+
+                      </td>
+                       <td>
+                           <!-- Salmou Alikom Every Body :) Dattel Feld  -->
+
+                           {% set indice_color = -1 %}
+                                {% set persons = value.persons %}
+                                {% for key,value in persons %}
+                                    {% set persons = value %}
+                                    {% for key,value in persons %}
+                                        {% set person = value %}
+                                        {% if ( person.donate_dattel == true ) and ( person.donate_dattel_qte > 0) %}
+
+
+                                            {% if indice_color == size_colors-1  %}
+                                                {% set indice_color = 0 %}
+                                            {% else %}
+                                                {% set indice_color = indice_color+1 %}
+                                            {% endif %}
+
+                                            {% set var = person.donate_dattel_qte  %}
+                                            {% set qte_datel = qte_datel + var %}
+                                            {% set datel = true %}
+                                            {% set id_popupDialog = 'popupDialog_dattel_'~person.id   %}
+                                            {% set id_input = 'input_dattel_'~person.id   %}
+
+
+                                            <a href="#{{ id_popupDialog  }}" data-rel="popup" data-position-to="window" data-transition="pop"  data-mini="true" class=" ui-btn ui-corner-all ui-btn-inline ui-icon-user  ui-btn-icon-notext"></a>
+                                            <div data-role="popup" id="{{ id_popupDialog  }}" data-overlay-theme="b" data-theme="b"  style="max-width:400px;">
+                                                <div data-role="header" data-theme="a">
+                                                    <h1>{{  person.pesudo  }}</h1>
+                                                </div>
+                                                <div role="main" class="ui-content">
+                                                    <h3 class="ui-title">Are you sure you want to update this Information? </h3>
+                                                    <span>Quantity of Dattel:</span>
+                                                    <input id="{{ id_input }}" type="Number" value="{{ var }}" min="0" max="{{ total_datel_qte_tag }}"></input>
+
+                                                    <a href="#" onclick="updateDataAction('dattel', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_update "  >update</a>
+                                                    <a href="#" onclick="deleteDataAction('dattel', {{ person.id }})" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b iftar_admin_link_delete" data-rel="external">Delete</a>
+
+                                                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">cancel</a>
+
+                                                </div>
+                                            </div>
+
+                                            <script type="text/javascript">
+                                                $(document).on('popupaterclose', '#{{ id_popupDialog }}', function(){
+                                                    $('.iftar_admin_link_update a').unbind('click');
+                                                    $('.iftar_admin_link_delete a').unbind('click');
+
+                                                });
+                                            </script>
+
+
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                          {% if datel == true %}
+                              <span class="iftar_text">{{ qte_datel }}/{{ total_datel_qte_tag }}</span>
+                          {% endif %}
+
+                       </td>
+
+
+
+
+                   </tr>
+
+                {% endfor %}
+                {% set food_person = false %}
+                {% set soope_person = false %}
+                {% set salade_person = false %}
+
+                {% set water = false  %}
+                {% set milk = false  %}
+                {% set datel = false  %}
+                {% set drinks = false  %}
+                {% set qte_water = 0  %}
+                {% set qte_milk = 0  %}
+                {% set qte_datel = 0  %}
+                {% set qte_drinks = 0  %}
+                {% set qte_food_person = 0 %}
+                {% set qte_soope_person = 0 %}
+                {% set qte_salade_person = 0 %}
+            {% endfor %}
+
+            </tbody>
+         </table>
+         <!--/div-->
+      </div>
+
+
+   </section>
+
+
+
+
+{% endblock %}
+

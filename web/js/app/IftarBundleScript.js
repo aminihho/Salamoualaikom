@@ -249,6 +249,9 @@ $( document ).ready(function() {
                         DisplayErrors(key, val, 'watterQte',  'Water' );
                         DisplayErrors(key, val, 'milkQte',  'Milk' );
                         DisplayErrors(key, val, 'anotherDrinkQte', 'Drinks' );
+                        DisplayErrors(key, val, 'firstName', 'First Name' );
+                        DisplayErrors(key, val, 'lastName', 'Last Name' );
+                        DisplayErrors(key, val, 'telefonnummer', 'Phone' );
                         DisplayErrors(key, val, 'error_descrition', '' );
 
 

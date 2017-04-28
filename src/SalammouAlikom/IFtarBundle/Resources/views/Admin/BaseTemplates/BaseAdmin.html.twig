@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}السَّلَامُ عَلَيْكُم{% endblock %}</title>
+    <!-- Load the Stylesheet -->
+    <link href="{{ asset('jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app/IFtar.css') }}" rel="stylesheet">
+
+    <!-- Load The Script -->
+    <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js') }}"></script>
+    <script src="{{ asset('js/app/AdminTabelIFtar.js') }}"></script>
+
+
+</head>
+<body>
+<div data-role="page">
+
+    <div data-role="header">
+        <h1>السَّلَامُ عَلَيْكُم</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        {% block body %}
+            {% block javascript %}{% endblock %}
+        {% endblock %}
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>Page Footer</h4>
+    </div><!-- /footer -->
+</div><!-- /page -->
+<!-- Scrip FOSJSRouting -->
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+</body>
+</html>

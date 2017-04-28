@@ -29,3 +29,21 @@ i_ftar_get_avlaible_data:
 i_ftar_get_prayers:
     path: app/prayers
     defaults: { _controller: IFtarBundle:Prayer:index}
+
+#####################ADMIN####################################
+iftar_admin_index:
+    path: app/admin
+    defaults: { _controller: IFtarBundle:AdminIFtarPage:index}
+
+
+iftar_admin_update_food:
+    path: /app/admin/update/{resource}/{id}/{new_val}
+    defaults: { _controller: IFtarBundle:AdminIFtarPage:update }
+    options:
+        expose: true
+
+iftar_admin_delete_food:
+    path: app/admin/delete/{resource}/{id}
+    defaults: { _controller: IFtarBundle:AdminIFtarPage:delete }
+    options:
+        expose: true
