@@ -1,0 +1,132 @@
+{% extends 'AppBundle:App:Base.html.twig' %}
+
+{% block header %}
+    <!--################################ Block Header ###########################################-->
+
+
+    <div data-role="collapsibleset" data-theme="a" data-content-theme="b" class="right">
+
+
+        <div data-role="collapsible">
+            <h2>Events </h2>
+            <ul data-role="listview" data-split-icon="gear" data-split-theme="a">
+                <li><a href="#iftar_div_donate" onclick="prepareTable()">
+                        <h3>show Ramathan Table</h3>
+                    </a>
+                </li>
+                <li><a href="#">
+                        <h3>Praticipate </h3>
+                    </a>
+                </li>
+                <li><a href="#">
+                        <h3>Info </h3>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <a href="{{ path('homepage') }}"  class=" ui-btn ui-corner-all ui-btn-inline ui-icon-home  ui-btn-icon-notext " ></a>
+
+
+{% endblock %}
+
+
+
+
+
+{% block body %}
+    <!--################################ Block Body ###########################################-->
+
+   <!-- ########################  Display the Image with Swipe plugin  ###########################################-->
+    <div id="silderRamdahan"  class="swipe">
+        <div class="swipe-wrap">
+            <!-- Image(Hadith ) 1 -->
+            <div>
+                <img src="{{ asset('images/slider/bg1.jpg') }}">
+            </div>
+            <!-- Image 2 -->
+            <div>
+                <img src="{{ asset('images/slider/bg2.jpg') }}">
+            </div>
+            <!-- Image 3 -->
+            <div>
+                <img src="{{ asset('images/slider/bg3.jpg') }}">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- #################  Display the IFtar-Table ##############################################--->
+    {{ block('Ramdathtable') }}
+
+
+
+
+
+
+
+
+
+
+    {% block javascript %}
+        <script src="{{ asset('js/app/Home.js') }}"></script>
+        <script src="{{ asset('js/app/AppIFtarRamathan.js') }}"></script>
+        <script src="{{ asset('Swipe/swipe.js') }}"></script>
+    {% endblock %}
+    {% block stylesheet %}
+        <link href="{{ asset('css/app/Home.css') }}" rel="stylesheet">
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block footer %}
+    <!--################################ Block Footer ###########################################-->
+    test
+{% endblock %}
+
+
+{% block Ramdathtable %}
+
+    <div  id="iftar_div_donate" >
+        <!--div class="table-responsive"-->
+
+        <table data-role="table" id ="iftar_table" data-mode="reflow" class="ui-responsive table-stroke" >
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Food</th>
+                <th>Soup</th>
+                <th>Salad</th>
+                <th>Milk</th>
+                <th>Water</th>
+                <th>Drinks</th>
+                <th>Dattel</th>
+            </tr>
+            </thead>
+            <tbody id="iftar_tbody">
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

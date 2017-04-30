@@ -338,4 +338,11 @@ class DefaultController extends Controller
         return $result;
     }
 
+
+
+    public function appIndexAction(Request $request ){
+        return $this->render('IFtarBundle:AppIFtarRamathan:index.html.twig');
+
+    }
+
 }

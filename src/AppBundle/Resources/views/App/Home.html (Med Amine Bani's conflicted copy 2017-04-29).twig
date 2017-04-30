@@ -1,0 +1,77 @@
+{% extends 'AppBundle:App:Base.html.twig' %}
+
+
+{% block header %}
+    <!--################################ Block Header ###########################################-->
+
+
+
+    <div data-role="collapsibleset" data-theme="a" data-content-theme="b" class="right">
+
+
+        <div data-role="collapsible">
+            <h2>Select Masjid </h2>
+            <ul data-role="listview" data-split-icon="gear" data-split-theme="a">
+                <li><a href="#">
+                        <img src="{{ asset('images/ico/favicon.ico') }}">
+                        <h3>Fathi Masjid</h3>
+                    </a>
+                </li>
+                <li><a href="http://www.moschee-chemnitz.de/">
+                        <img src="{{ asset('images/ico/favicon.ico') }}">
+                        <h3>Arabic Masjid</h3>
+                    </a>
+                </li>
+                <li><a href="#">
+                        <img src="{{ asset('images/ico/favicon.ico') }}">
+                        <h3>Gebetsraum Tu-chemnitz </h3>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+{% block body %}
+    <!--################################ Block Body ###########################################-->
+
+
+
+    {% block javascript %}
+        <script src="{{ asset('js/app/Home.js') }}"></script>
+        <script src="{{ asset('Swipe/swipe.js') }}"></script>
+    {% endblock %}
+    {% block stylesheet %}
+        <link href="{{ asset('css/app/Home.css') }}" rel="stylesheet">
+
+    {% endblock %}
+
+
+    <!--################################ Section Fathi Mosque  ###########################################-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block footer %}
+    <!--################################ Block Footer ###########################################-->
+yxcxycyxc
+{% endblock %}

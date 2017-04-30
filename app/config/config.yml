@@ -83,4 +83,11 @@ knp_snappy:
             - { name: 'page-size', value: 'A4' }
 
 
-
+# configuration of FosUserBundle:
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    from_email:
+        address: salamoualaykom@salamoualikom.de
+        sender_name: Admin

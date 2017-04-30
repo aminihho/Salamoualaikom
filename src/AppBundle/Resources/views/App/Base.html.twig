@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}السَّلَامُ عَلَيْكُم{% endblock %}</title>
+    <!-- Load the Stylesheet -->
+    <link href="{{ asset('jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css') }}" rel="stylesheet">
+
+    <!-- Load The Script -->
+    <script src="{{ asset('js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js') }}"></script>
+
+</head>
+<body>
+<div data-role="page">
+    <!-- /header -->
+    <div data-role="header">
+       {% block header %} {% endblock %}
+    </div>
+    <!-- /content -->
+    <div role="main" class="ui-content">
+        {% block body %}
+            {% block javascript %}
+            {% endblock %}
+            {% block stylesheet %} {% endblock %}
+        {% endblock %}
+    </div>
+    <!-- /footer -->
+    <div data-role="footer">
+        {% block footer %} {% endblock %}
+    </div>
+</div><!-- /page -->
+
+
+<!-- Scrip FOSJSRouting -->
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+</body>
+</html>

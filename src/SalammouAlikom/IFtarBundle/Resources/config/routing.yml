@@ -47,3 +47,8 @@ iftar_admin_delete_food:
     defaults: { _controller: IFtarBundle:AdminIFtarPage:delete }
     options:
         expose: true
+
+#########################AppIFtarRamdathn#########################
+app_iftar_ramdathan:
+     path: /app
+     defaults: { _controller: IFtarBundle:Default:appIndex }

@@ -11,3 +11,7 @@ app:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+# Routing Of FosUserBundle:
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
