@@ -318,6 +318,7 @@ class DefaultController extends Controller
     }
 
     private function checkIFWeHaveResourceByDay( $total_resource, $avalaible_resource ){
+
         $rest = $total_resource - $avalaible_resource;
         if( $rest < 0){
             $rest = 0;

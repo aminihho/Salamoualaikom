@@ -402,17 +402,19 @@ $( document ).ready(function() {
             var info_qte = '';
             if( bool == true) {
                 var needed_recource = total_resource - total;
-
-                var message = '';
-                if( total>= total_resource ){
-                    liste_of_finsched_cell.push(id_td);
-                    message = 'completed';
-                }else{
-                    message = 'we need '+needed_recource;
-                }
-
                 info_qte = '<span class="iftar_text">'+ total + '/' + total_resource+ '</span>';
-                info_qte = info_qte + '<span  data-toggle="popover" title="  "  data-content="'+message+' "> <span class="glyphicon glyphicon-tint"></span> </span>';
+
+                /*  var message = '';
+                  if( total>= total_resource ){
+                      liste_of_finsched_cell.push(id_td);
+                      message = 'completed';
+                  }else{
+                      message = 'we need '+needed_recource;
+                  }
+
+                  info_qte = '<span class="iftar_text">'+ total + '/' + total_resource+ '</span>';
+                  info_qte = info_qte + '<span  data-toggle="popover" title="  "  data-content="'+message+' "> <span class="glyphicon glyphicon-tint"></span> </span>';
+                */
             }
             result = result + info_qte + '</div></div>';
 
